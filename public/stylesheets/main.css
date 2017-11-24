@@ -6,45 +6,47 @@ html, body{
 }
 
 .top-bar {
-  height: 50px;
+  height: 125px;
   background-color: black;
 }
 
 .top-bar-text {
   margin: 0;
   text-align: center;
-  padding-top: 25px;
-  padding-bottom: 25px;
+  padding-top: 30px;
+  padding-bottom: 30px;
   color: white;
-  font-size: 20px;
+  font-size: 48px;
   font-weight: 500;
 }
 
 .consent {
-  margin: 40px 30px 30px 30px;
+  margin: 100px 30px 30px 30px;
 }
 
 .consent-header, .participant-number {
-  margin-bottom: 15px;
+  margin-bottom: 50px;
   font-weight: 800;
-  font-size: 14px;
+  font-size: 48px;
 }
 
 .consent-text {
   text-align: justify;
-  font-size: 12px;
+  font-size: 34px;
   text-align-last: left;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
 .btn-center {
-  margin: 0 auto 10px auto;
+  margin: 0 auto 30px auto;
   display: block;
+  font-size: 36px;
+  padding: 15px 30px;
 }
 
 .decline-term {
   text-align: center;
-  font-size: 10px;
+  font-size: 24px;
   color: gray;
 }
 
