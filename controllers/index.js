@@ -24,6 +24,10 @@ exports.getConsent = (req, res) => {
   res.render('consent', { participantId: participantId });
 }
 
+exports.getInfo = (req, res) => {
+  res.redirect("/");
+}
+
 exports.postInfo = (req, res) => {
   var newUser = new User({ participantId: req.body.participantId });
   newUser.save();
