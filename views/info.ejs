@@ -19,15 +19,15 @@
           <form>
             <div class="form-group">
               <label for="firstname">First Name: </label>
-              <input type="text" class="form-control" id="firstname" name="firstname" placeholder="First Name" required>
+              <input type="text" class="form-control form-control-big" id="firstname" name="firstname" placeholder="First Name" required>
             </div>
             <div class="form-group">
               <label for="lastname">Last Name: </label>
-              <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Last Name" required>
+              <input type="text" class="form-control form-control-big" id="lastname" name="lastname" placeholder="Last Name" required>
             </div>
             <div class="form-group">
               <label for="gender">Gender: </label>
-              <select name="gender" class="form-control">
+              <select name="gender" class="form-control form-control-big">
                 <option selected="selected" disabled>Select Your Gender</option>
                 <option value="male">Male</option>
                 <option value="female">Female</option>
@@ -36,7 +36,7 @@
               </select>
             </div>
             <div class="form-group">
-              <button type="submit" class="btn btn-primary btn-center form-control">Submit</button>
+              <button type="submit" class="btn btn-primary btn-submit form-control form-control-big">Submit</button>
             </div>
           </form>
         </span>
@@ -47,8 +47,8 @@
   <script src="scripts/select/js/jquery.js"></script>
   <script src="scripts/select/js/jquery.nice-select.js"></script>
   <script type="text/javascript">
-    $(document).ready(function() {
-      $('select').niceSelect();
-    });
+    // $(document).ready(function() {
+    //   $('select').niceSelect();
+    // });
   </script>
 </html>
