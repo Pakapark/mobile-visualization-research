@@ -82,3 +82,11 @@ html, body{
 .welcome-index-block {
   height: 20%;
 }
+
+.form-user {
+  margin-top: 200px;
+}
+
+label {
+  font-size: 30px;
+}
