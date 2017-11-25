@@ -34,7 +34,13 @@ router.route('/consent')
   .get(indexController.getConsent);
 
 router.route('/info')
+  .get(indexController.getInfo)
   .post(indexController.postInfo);
+
+router.route('/experiment')
+  .get(indexController.getExperiment) // testing
+  .post(indexController.postExperiment);
+
 
 
 app.listen(port);

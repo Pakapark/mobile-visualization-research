@@ -15,7 +15,8 @@
       <div class="row form-user">
         <span class="col-sm-3"></span>
         <span class="col-sm-6">
-          <form>
+          <p class="text-header text-center">Participant No: <%= participantId %></p>
+          <form action="/experiment" method="post">
             <input type="hidden" name="participantId" value="<%= participantId %>">
             <div class="form-group">
               <label for="firstname">First Name: </label>

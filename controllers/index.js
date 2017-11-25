@@ -29,7 +29,20 @@ exports.getInfo = (req, res) => {
 }
 
 exports.postInfo = (req, res) => {
+  if (!req.body.hasOwnProperty('participantId')) return res.redirect("/");
   var newUser = new User({ participantId: req.body.participantId });
   newUser.save();
   res.render('info', { participantId: req.body.participantId });
+}
+
+exports.getExperiment = (req, res) => {
+  res.render('experiment')
+}
+
+exports.postExperiment = (req, res) => {
+  User.find({participantId: req.body.participantId}, (err, users) => {
+    if (users.length == 0) res.redirect("/");
+  }).limit(1)
+
+  res.render('experiment', { participantId: req.body.participantId })
 }

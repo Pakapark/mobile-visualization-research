@@ -28,7 +28,7 @@ html, body{
   margin: 100px 30px 30px 30px;
 }
 
-.consent-header, .participant-number {
+.consent-header, .participant-number{
   margin-bottom: 50px;
   font-weight: 800;
   font-size: 48px;
@@ -98,4 +98,14 @@ label {
 
 .btn-submit {
   margin-top: 30px;
+}
+
+.text-header {
+  margin-bottom: 25px;
+  font-weight: 800;
+  font-size: 36px;
+}
+
+.experiment-instruction {
+  margin-top: 100px;
 }
