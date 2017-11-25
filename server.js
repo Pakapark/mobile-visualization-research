@@ -41,6 +41,9 @@ router.route('/experiment')
   .get(indexController.getExperiment) // testing
   .post(indexController.postExperiment);
 
+router.route('/experiment/:question')
+  .post(indexController.postExperimentQuestion);
+
 
 
 app.listen(port);

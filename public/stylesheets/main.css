@@ -24,17 +24,17 @@ html, body{
   margin-bottom: 100px;
 }
 
-.consent {
+.consent, .instruction {
   margin: 100px 30px 30px 30px;
 }
 
-.consent-header, .participant-number{
+.consent-header, .participant-number, .instruction-header{
   margin-bottom: 50px;
   font-weight: 800;
   font-size: 48px;
 }
 
-.consent-text {
+.consent-text, .instruction-text {
   text-align: justify;
   font-size: 34px;
   text-align-last: left;
@@ -108,4 +108,8 @@ label {
 
 .experiment-instruction {
   margin-top: 100px;
+}
+
+.btn-start {
+  width: 300px;
 }

@@ -42,7 +42,26 @@ exports.getExperiment = (req, res) => {
 exports.postExperiment = (req, res) => {
   User.find({participantId: req.body.participantId}, (err, users) => {
     if (users.length == 0) res.redirect("/");
+    users[0].firstName = req.body.firstname;
+    users[0].lastName = req.body.lastname;
+    users[0].gender = req.body.gender;
+    users[0].save();
   }).limit(1)
 
   res.render('experiment', { participantId: req.body.participantId })
+}
+
+exports.postExperimentQuestion = (req, res) => {
+  User.find({participantId: req.body.participantId}, (err, users) => {
+    if (users.length == 0) res.redirect("/");
+  }).limit(1)
+
+  var question = req.params.question;
+  var parameter = {
+    participantId: req.body.participantId,
+    question: question,
+    nextQuestion: (parseInt(question, 10) + 1).toString()
+  }
+
+  res.render('question', parameter);
 }
