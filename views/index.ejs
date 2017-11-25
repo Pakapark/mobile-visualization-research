@@ -8,53 +8,14 @@
   </head>
   <body>
     <div class="top-bar">
-      <p class="top-bar-text">Visualization Research</h2>
+      <p class="top-bar-text">Welcome</h2>
     </div>
 
-    <div class="container">
-      <div class="consent">
-        <p class="consent-header text-center">Consent Form</p>
-        <p class="consent-text">
-           This visualization experiment is being produced as part of the coursework for
-           Computer Science course CS448B at Stanford University. Participants in experimental evaluation
-           of the application provide data that is used to evaluate and modify the visualization for time dependent data on
-           a mobile screen. Data will be collected by the accuracy and response time for each question.
-        </p>
-
-        <p class="consent-text">
-          Participation in this experiment is voluntary. Participants may withdraw themselves and their data at any time
-          without fear of consequences. Concerns about the experiment may be discussed with the researchers Pakapark Bhumiwat or Albert Feng.
-          Participant anonymity will be provided by the separate storage of names from data.
-          Data will only be identified by participant number.
-          No identifying information about the participants will be available to anyone except the researchers.
-        </p>
-
-        <p class="consent-text">
-          I hereby acknowledge that I have been given an opportunity to ask questions about the nature of the experiment and my participation in it.
-          I give my consent to have data collected on my behavior and opinions in relation to the experiment.
-          I also give permission for images/video of me using the application to be used in presentations or publications as long as I am not personally identifiable in the images/video.
-          I understand I may withdraw my permission at any time.
-        </p>
-
-        <p class="participant-number">Participant Number: <span id="random-id"></span></p>
+    <div class="container welcome-index-block">
+      <div class="welcome-message">
+        <h2 class="welcome-message-text text-center">Welcome to Visualization Research</h2>
+        <a href="/consent"><button type="button" name="button" class="btn btn-primary btn-center" id="btn-index-continue">Continue</button></a>
       </div>
-
-      <a href="warmup.html"><button type="button" name="button" class="btn btn-primary btn-center">Accept the Term</button></a>
-      <p class="decline-term">Decline the Term</p>
     </div>
   </body>
-  <script type="text/javascript">
-    function makeid() {
-      var text = "";
-      var possible = "0123456789";
-
-      for (var i = 0; i < 5; i++)
-        text += possible.charAt(Math.floor(Math.random() * possible.length));
-
-      return text;
-    }
-
-    var participantNumber = document.getElementById("random-id");
-    participantNumber.textContent = makeid();
-  </script>
 </html>

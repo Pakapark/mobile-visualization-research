@@ -20,6 +20,10 @@ html, body{
   font-weight: 500;
 }
 
+.container {
+  margin-bottom: 100px;
+}
+
 .consent {
   margin: 100px 30px 30px 30px;
 }
@@ -38,7 +42,7 @@ html, body{
 }
 
 .btn-center {
-  margin: 0 auto 30px auto;
+  margin: 50px auto 30px auto;
   display: block;
   font-size: 36px;
   padding: 15px 30px;
@@ -52,4 +56,29 @@ html, body{
 
 .text-center {
   text-align: center;
+}
+
+.welcome-message {
+  height: 100%;
+  display: block;
+  margin: auto;
+}
+
+.welcome-message-text {
+  font-size: 48px;
+  margin-top: 40%;
+}
+
+.full-height {
+  height: 100%;
+}
+
+#btn-index-continue {
+  margin-top: 100px;
+  margin-bottom: 20%;
+  border-radius: 10px;
+}
+
+.welcome-index-block {
+  height: 20%;
 }

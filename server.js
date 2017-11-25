@@ -4,6 +4,12 @@ var express     = require("express"),
     database    = require("./configs/database"),
     passport    = require("passport");
 
+// ====================
+// ===== DATABASE =====
+// ====================
+mongoose.Promise = require('bluebird');
+mongoose.connect(database.url, {useMongoClient: true});
+
 // ================
 // ===== PORT =====
 // ================
@@ -23,6 +29,13 @@ var indexController = require("./controllers/index");
 
 router.route('/')
   .get(indexController.getIndex);
+
+router.route('/consent')
+  .get(indexController.getConsent);
+
+router.route('/info')
+  .post(indexController.postInfo);
+
 
 app.listen(port);
 console.log("Connect Server at port: " + port);
