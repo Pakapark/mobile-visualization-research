@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title>CS448B Final Project</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../stylesheets/main.css">
+    <link rel="stylesheet" href="../stylesheets/main.css">
   </head>
   <body>
     <div class="top-bar">
@@ -14,8 +14,13 @@
     <div class="container">
       <div class="content">
         <div class="visualization" style="height: 600px; background-color: black; margin-top: 100px;"></div>
-        <div class="question" style="height: 400px; background-color: blue; margin-top: 100px;"></div>
+        <div class="question" style="height: 400px; background-color: blue; margin-top: 50px; margin-bottom: 50px;"></div>
+        <form class="" action="/experiment/<%= nextQuestion %>" method="post">
+          <input type="hidden" name="participantId" value="<%= participantId %>">
+          <button type="submit" class="btn btn-primary btn-submit form-control form-control-big">Submit</button>
+        </form>
       </div>
     </div>
   </body>
+  <script src="https://d3js.org/d3.v4.min.js"></script>
 </html>
