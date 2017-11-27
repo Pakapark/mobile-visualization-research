@@ -22,14 +22,14 @@ var router = express.Router();
 require("./configs/appConfig")(app, express, router, passport);
 // require("./configs/passport")(passport);
 
-// =======================
-// ===== DATA UPDATE =====
-// =======================
-var PythonShell = require('python-shell');
-PythonShell.run('public/data/data-generator.py', (err) => {
-  if (err) throw err;
-  console.log("Python Finished");
-})
+// // =======================
+// // ===== DATA UPDATE =====
+// // =======================
+// var PythonShell = require('python-shell');
+// PythonShell.run('public/data/data-generator.py', (err) => {
+//   if (err) throw err;
+//   console.log("Python Finished");
+// })
 
 // =======================
 // ===== CONTROLLERS =====
