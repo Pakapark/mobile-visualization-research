@@ -113,3 +113,9 @@ label {
 .btn-start {
   width: 300px;
 }
+
+#visualization {
+  margin: 50px auto;
+  display: block;
+  width: 1000px;
+}
