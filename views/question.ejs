@@ -21,43 +21,17 @@
           <img src="../images/<%= examType %>-<%= parseInt((parseInt(question.question, 10) + 2)/3, 10) %>.png" alt="" height="600">
         </div>
         <div>
-          <form class="option-text" action="/experiment/<%= nextQuestion %>" method="post">
+          <form name="form-question" class="option-text" action="/experiment/<%= nextQuestion %>" method="post">
             <div class="question">
               <p class="question-text"><b>Q<%= question.question %>:</b> <%= question.description %></p>
               <input type="hidden" name="participantId" value="<%= participantId %>">
-              <input type="radio" name="answer" value="A" class="option-text"> <%= question.option1 %> <br>
-              <input type="radio" name="answer" value="B" class="option-text"> <%= question.option2 %> <br>
-              <input type="radio" name="answer" value="C" class="option-text"> <%= question.option3 %> <br>
-              <input type="radio" name="answer" value="D" class="option-text"> <%= question.option4 %> <br>
+              <input type="hidden" name="firstTime" id="firstTime" value="0">
+              <input type="hidden" name="lastTime" id="lastTime" value="0">
+              <input type="radio" name="answer" value="A" class="options" required> <%= question.option1 %> <br>
+              <input type="radio" name="answer" value="B" class="options"> <%= question.option2 %> <br>
+              <input type="radio" name="answer" value="C" class="options"> <%= question.option3 %> <br>
+              <input type="radio" name="answer" value="D" class="options"> <%= question.option4 %> <br>
             </div>
-            <!-- <% if (examType == "B" && question == 1) { %>
-              <div class="question">
-                <p class="question-text"><b>Q1:</b> Among all three students, who receives the lowest overall math score from these four tests?</p>
-                <input type="hidden" name="participantId" value="<%= participantId %>">
-                <input type="radio" name="answer" value="A" class="option-text"> Student A <br>
-                <input type="radio" name="answer" value="B" class="option-text"> Student B <br>
-                <input type="radio" name="answer" value="C" class="option-text"> Student C <br>
-                <input type="radio" name="answer" value="D" class="option-text"> None of the above <br>
-              </div>
-            <% } else if (examType == "B" && question == 2) { %>
-              <div class="question">
-                <p class="question-text"><b>Q2:</b> What is the approximate average math score for student B from these four tests?</p>
-                <input type="hidden" name="participantId" value="<%= participantId %>">
-                <input type="radio" name="answer" value="A" class="option-text"> 25 <br>
-                <input type="radio" name="answer" value="B" class="option-text"> 45 <br>
-                <input type="radio" name="answer" value="C" class="option-text"> 65 <br>
-                <input type="radio" name="answer" value="D" class="option-text"> 85 <br>
-              </div>
-            <% } else if (examType == "B" && question == 3) { %>
-              <div class="question">
-                <p class="question-text"><b>Q3:</b> Assume that all three students don't study during the year, which month of exam appears to be the most difficult test among all?</p>
-                <input type="hidden" name="participantId" value="<%= participantId %>">
-                <input type="radio" name="answer" value="A" class="option-text"> January <br>
-                <input type="radio" name="answer" value="B" class="option-text"> April <br>
-                <input type="radio" name="answer" value="C" class="option-text"> July <br>
-                <input type="radio" name="answer" value="D" class="option-text"> October <br>
-              </div>
-            <% } %> -->
             <button type="submit" class="btn btn-primary btn-submit form-control form-control-big">Submit</button>
           </form>
         </div>
@@ -65,92 +39,5 @@
     </div>
   </body>
   <script src="https://d3js.org/d3.v4.min.js"></script>
-  <script type="text/javascript">
-
-  //   var svg = d3.select("svg"),
-  //   margin = {top: 50, right: 20, bottom: 30, left: 50},
-  //   width = +svg.attr("width") - margin.left - margin.right,
-  //   height = +svg.attr("height") - margin.top - margin.bottom,
-  //   g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-   //
-  //   var parseTime = d3.timeParse("%Y-%m-%d");
-   //
-  //   var x = d3.scaleTime()
-  //             .rangeRound([0, width]);
-   //
-  //   var y = d3.scaleLinear()
-  //             .rangeRound([height, 0]);
-   //
-  //   var line = d3.line()
-  //                .x((d) => x(d["date"]))
-  //                .y((d) => y(d["math score"]));
-   //
-   //
-  //   d3.csv("../data/processed/warmup.csv", function(d) {
-  //     d["date"] = parseTime(d["date"]);
-  //     d["math score"] = +d["math score"];
-  //     return d;
-  //  }, function(error, data) {
-  //    if (error) throw error;
-   //
-  //   //  console.log(d3.extent(data, (d) => d["date"]))
-   //
-  //    x.domain([parseTime("2017-01-01"), parseTime("2017-10-01")]);
-  //    y.domain([0, 100]);
-   //
-  //    studentAData = data.slice(0, 4);
-  //    studentBData = data.slice(4, 8);
-  //    studentCData = data.slice(8, 12);
-   //
-  //    g.append("g")
-  //        .attr("transform", "translate(0," + height + ")")
-  //        .call(d3.axisBottom(x))
-  //     .select(".domain")
-  //        .remove()
-  //     .append("text")
-  //        .attr("fill", "#000")
-  //        .text("year");
-   //
-  //    g.append("g")
-  //        .call(d3.axisLeft(y))
-  //     .append("text")
-  //        .attr("fill", "#000")
-  //        .attr("transform", "rotate(-90)")
-  //        .attr("y", 6)
-  //        .attr("dy", "0.71em")
-  //        .attr("text-anchor", "end")
-  //        .text("Score");
-   //
-  //    g.append("path")
-  //        .datum(studentAData)
-  //        .attr("fill", "none")
-  //        .attr("stroke", "steelblue")
-  //        .attr("stroke-linejoin", "round")
-  //        .attr("stroke-linecap", "round")
-  //        .attr("stroke-width", 1.5)
-  //        .attr("d", line)
-  //      .append("text")
-   //
-   //
-  //    g.append("path")
-  //        .datum(studentBData)
-  //        .attr("fill", "none")
-  //        .attr("stroke", "red")
-  //        .attr("stroke-linejoin", "round")
-  //        .attr("stroke-linecap", "round")
-  //        .attr("stroke-width", 1.5)
-  //        .attr("d", line);
-   //
-  //    g.append("path")
-  //        .datum(studentCData)
-  //        .attr("fill", "none")
-  //        .attr("stroke", "green")
-  //        .attr("stroke-linejoin", "round")
-  //        .attr("stroke-linecap", "round")
-  //        .attr("stroke-width", 1.5)
-  //        .attr("d", line);
-  //  });
-
-
-  </script>
+  <script src="../scripts/timing.js"></script>
 </html>

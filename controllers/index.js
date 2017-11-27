@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var User = require('../models/user');
 var Question = require('../models/question');
+var Paper = require('../models/paper');
 
 function makeid() {
   var text = "";
@@ -17,6 +18,10 @@ function randomTest() {
   return possible.charAt(Math.floor(Math.random() * possible.length));
 }
 
+exports.getIndexRedirect = (req, res) => {
+  res.redirect("/");
+}
+
 exports.getIndex = (req, res) => {
   res.render('index');
 }
@@ -30,13 +35,9 @@ exports.getConsent = (req, res) => {
   res.render('consent', { participantId: participantId });
 }
 
-exports.getInfo = (req, res) => {
-  res.redirect("/");
-}
-
 exports.postInfo = (req, res) => {
   if (!req.body.hasOwnProperty('participantId')) return res.redirect("/");
-  var newUser = new User({ participantId: req.body.participantId });
+  var newUser = new User({ participantId: req.body.participantId, createdAt: Date.now()});
   newUser.save();
   res.render('info', { participantId: req.body.participantId });
 }
@@ -62,9 +63,41 @@ exports.postExperimentQuestion = (req, res) => {
   User.find({participantId: req.body.participantId}, (err, users) => {
     if (users.length == 0) return res.redirect("/");
 
-    var question = req.params.question;
-    Question.find({question: parseInt(question)}, (err, questions) => {
-      if (questions.length == 0) return // Last question
+    var question = parseInt(req.params.question, 10);
+    if (question > 1) {
+      Paper.find({userId: req.body.participantId}, (err, papers) => {
+        if (papers.length == 0) {
+          var newPaper = new Paper({
+            userId: req.body.participantId,
+            examType: users[0].examType,
+            question: [{
+              question: question - 1,
+              answer: req.body.answer,
+              firstTime: req.body.firstTime,
+              lastTime: req.body.lastTime,
+              createdAt: Date.now()
+            }]
+          })
+
+          newPaper.save();
+        } else {
+          papers[0].question.push({
+            question: question - 1,
+            answer: req.body.answer,
+            firstTime: req.body.firstTime,
+            lastTime: req.body.lastTime,
+            createdAt: Date.now()
+          })
+
+          papers[0].save();
+        }
+      }).limit(1)
+
+      users[0]["question" + (question - 1).toString()] = req.body.answer;
+      users[0].save();
+    }
+    Question.find({question: question}, (err, questions) => {
+      if (questions.length == 0) return res.send("You have reach the end!!!");
 
       var parameter = {
         participantId: req.body.participantId,

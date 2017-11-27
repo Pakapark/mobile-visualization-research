@@ -38,17 +38,16 @@ router.route('/consent')
   .get(indexController.getConsent);
 
 router.route('/info')
-  .get(indexController.getInfo)
   .post(indexController.postInfo);
 
 router.route('/experiment')
-  .get(indexController.getExperiment) // testing
   .post(indexController.postExperiment);
 
 router.route('/experiment/:question')
   .post(indexController.postExperimentQuestion);
 
-
+router.route('*')
+  .get(indexController.getIndexRedirect);
 
 app.listen(port);
 console.log("Connect Server at port: " + port);
