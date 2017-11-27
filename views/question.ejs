@@ -8,7 +8,11 @@
   </head>
   <body>
     <div class="top-bar">
-      <p class="top-bar-text">Question <%= question %></h2>
+      <% if (question <= 3) { %>
+        <p class="top-bar-text">Warm up <%= question %></p>
+      <% } else { %>
+        <p class="top-bar-text">Question <%= question %></h2>
+      <% } %>
     </div>
 
     <div class="container">
@@ -16,11 +20,16 @@
         <div id="visualization">
           <img src="../images/warmup2.png" alt="" height="600">
         </div>
-        <div id="question" style="height: 400px; background-color: blue;"></div>
-        <form class="" action="/experiment/<%= nextQuestion %>" method="post">
-          <input type="hidden" name="participantId" value="<%= participantId %>">
-          <button type="submit" class="btn btn-primary btn-submit form-control form-control-big">Submit</button>
-        </form>
+        <div id="question" style="height: 400px;">
+          <p class="question-text">Among all three students, who receives the lowest overall math score from four tests?</p>
+          <form class="option-text" action="/experiment/<%= nextQuestion %>" method="post">
+            <input type="hidden" name="participantId" value="<%= participantId %>">
+            <input type="radio" name="answer" value="A" class="option-text"> Student A <br>
+            <input type="radio" name="answer" value="B" class="option-text"> Student B <br>
+            <input type="radio" name="answer" value="C" class="option-text"> Student C <br>
+            <button type="submit" class="btn btn-primary btn-submit form-control form-control-big">Submit</button>
+          </form>
+        </div>
       </div>
     </div>
   </body>

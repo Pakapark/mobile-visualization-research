@@ -119,3 +119,13 @@ label {
   display: block;
   width: 750px;
 }
+
+.question-text, .option-text {
+  font-size: 36px;
+}
+
+input[type="radio"] {
+  width: 30px;
+  height: 30px;
+  margin-right: 15px;
+}
