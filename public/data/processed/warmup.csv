@@ -1,0 +1,13 @@
+id,student,date,math score,science score,history score
+1,student A,1/1/17,43,67,83
+2,student A,4/1/17,40,64,85
+3,student A,7/1/17,44,61,89
+4,student A,10/1/17,41,65,81
+5,student B,1/1/17,65,84,42
+6,student B,4/1/17,60,88,43
+7,student B,7/1/17,69,85,47
+8,student B,10/1/17,61,82,40
+9,student C,1/1/17,89,45,69
+10,student C,4/1/17,84,46,66
+11,student C,7/1/17,87,40,62
+12,student C,10/1/17,86,43,69

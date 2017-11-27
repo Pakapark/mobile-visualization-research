@@ -13,8 +13,13 @@
 
     <div class="container">
       <div class="content">
-        <div class="visualization" style="height: 600px; background-color: black; margin-top: 100px;"></div>
-        <div class="question" style="height: 400px; background-color: blue; margin-top: 50px; margin-bottom: 50px;"></div>
+        <!-- <svg width="960" height="600"></svg> -->
+        <div class="visualization-block row">
+          <span class="col-sm-2"></span>
+          <span class="col-sm-8"><img src="../images/warmup2.png" alt="" style="margin:50px auto;"></span>
+          <span class="col-sm-2"></span>
+        </div>
+        <div id="question" style="height: 400px; background-color: blue;"></div>
         <form class="" action="/experiment/<%= nextQuestion %>" method="post">
           <input type="hidden" name="participantId" value="<%= participantId %>">
           <button type="submit" class="btn btn-primary btn-submit form-control form-control-big">Submit</button>
@@ -23,4 +28,92 @@
     </div>
   </body>
   <script src="https://d3js.org/d3.v4.min.js"></script>
+  <script type="text/javascript">
+
+  //   var svg = d3.select("svg"),
+  //   margin = {top: 50, right: 20, bottom: 30, left: 50},
+  //   width = +svg.attr("width") - margin.left - margin.right,
+  //   height = +svg.attr("height") - margin.top - margin.bottom,
+  //   g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+   //
+  //   var parseTime = d3.timeParse("%Y-%m-%d");
+   //
+  //   var x = d3.scaleTime()
+  //             .rangeRound([0, width]);
+   //
+  //   var y = d3.scaleLinear()
+  //             .rangeRound([height, 0]);
+   //
+  //   var line = d3.line()
+  //                .x((d) => x(d["date"]))
+  //                .y((d) => y(d["math score"]));
+   //
+   //
+  //   d3.csv("../data/processed/warmup.csv", function(d) {
+  //     d["date"] = parseTime(d["date"]);
+  //     d["math score"] = +d["math score"];
+  //     return d;
+  //  }, function(error, data) {
+  //    if (error) throw error;
+   //
+  //   //  console.log(d3.extent(data, (d) => d["date"]))
+   //
+  //    x.domain([parseTime("2017-01-01"), parseTime("2017-10-01")]);
+  //    y.domain([0, 100]);
+   //
+  //    studentAData = data.slice(0, 4);
+  //    studentBData = data.slice(4, 8);
+  //    studentCData = data.slice(8, 12);
+   //
+  //    g.append("g")
+  //        .attr("transform", "translate(0," + height + ")")
+  //        .call(d3.axisBottom(x))
+  //     .select(".domain")
+  //        .remove()
+  //     .append("text")
+  //        .attr("fill", "#000")
+  //        .text("year");
+   //
+  //    g.append("g")
+  //        .call(d3.axisLeft(y))
+  //     .append("text")
+  //        .attr("fill", "#000")
+  //        .attr("transform", "rotate(-90)")
+  //        .attr("y", 6)
+  //        .attr("dy", "0.71em")
+  //        .attr("text-anchor", "end")
+  //        .text("Score");
+   //
+  //    g.append("path")
+  //        .datum(studentAData)
+  //        .attr("fill", "none")
+  //        .attr("stroke", "steelblue")
+  //        .attr("stroke-linejoin", "round")
+  //        .attr("stroke-linecap", "round")
+  //        .attr("stroke-width", 1.5)
+  //        .attr("d", line)
+  //      .append("text")
+   //
+   //
+  //    g.append("path")
+  //        .datum(studentBData)
+  //        .attr("fill", "none")
+  //        .attr("stroke", "red")
+  //        .attr("stroke-linejoin", "round")
+  //        .attr("stroke-linecap", "round")
+  //        .attr("stroke-width", 1.5)
+  //        .attr("d", line);
+   //
+  //    g.append("path")
+  //        .datum(studentCData)
+  //        .attr("fill", "none")
+  //        .attr("stroke", "green")
+  //        .attr("stroke-linejoin", "round")
+  //        .attr("stroke-linecap", "round")
+  //        .attr("stroke-width", 1.5)
+  //        .attr("d", line);
+  //  });
+
+
+  </script>
 </html>
