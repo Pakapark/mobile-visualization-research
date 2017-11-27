@@ -11,6 +11,11 @@ function makeid() {
   return text;
 }
 
+function randomTest() {
+  var possible = "ABC";
+  return possible.charAt(Math.floor(Math.random() * possible.length));
+}
+
 exports.getIndex = (req, res) => {
   res.render('index');
 }
@@ -45,6 +50,7 @@ exports.postExperiment = (req, res) => {
     users[0].firstName = req.body.firstname;
     users[0].lastName = req.body.lastname;
     users[0].gender = req.body.gender;
+    users[0].examType = "B"//randomTest();
     users[0].save();
   }).limit(1)
 
@@ -53,15 +59,16 @@ exports.postExperiment = (req, res) => {
 
 exports.postExperimentQuestion = (req, res) => {
   User.find({participantId: req.body.participantId}, (err, users) => {
-    if (users.length == 0) res.redirect("/");
+    if (users.length == 0) return res.redirect("/");
+
+    var question = req.params.question;
+    var parameter = {
+      participantId: req.body.participantId,
+      question: question,
+      nextQuestion: (parseInt(question, 10) + 1).toString(),
+      examType: users[0].examType
+    }
+
+    res.render('question', parameter);
   }).limit(1)
-
-  var question = req.params.question;
-  var parameter = {
-    participantId: req.body.participantId,
-    question: question,
-    nextQuestion: (parseInt(question, 10) + 1).toString()
-  }
-
-  res.render('question', parameter);
 }
