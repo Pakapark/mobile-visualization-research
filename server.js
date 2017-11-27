@@ -24,7 +24,7 @@ require("./configs/appConfig")(app, express, router, passport);
 // ===============
 // ===== SEED ====
 // ===============
-require("./seed");
+// require("./seed");
 
 // =======================
 // ===== CONTROLLERS =====
