@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var User = require('../models/user');
+var Question = require('../models/question');
 
 function makeid() {
   var text = "";
@@ -62,13 +63,17 @@ exports.postExperimentQuestion = (req, res) => {
     if (users.length == 0) return res.redirect("/");
 
     var question = req.params.question;
-    var parameter = {
-      participantId: req.body.participantId,
-      question: question,
-      nextQuestion: (parseInt(question, 10) + 1).toString(),
-      examType: users[0].examType
-    }
+    Question.find({question: parseInt(question)}, (err, questions) => {
+      if (questions.length == 0) return // Last question
 
-    res.render('question', parameter);
+      var parameter = {
+        participantId: req.body.participantId,
+        question: questions[0],
+        nextQuestion: (parseInt(question, 10) + 1).toString(),
+        examType: users[0].examType
+      }
+
+      res.render('question', parameter);
+    }).limit(1);
   }).limit(1)
 }
