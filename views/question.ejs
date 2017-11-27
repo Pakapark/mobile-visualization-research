@@ -20,13 +20,30 @@
         <div id="visualization">
           <img src="../images/warmup2.png" alt="" height="600">
         </div>
-        <div id="question" style="height: 400px;">
-          <p class="question-text">Among all three students, who receives the lowest overall math score from four tests?</p>
+        <div>
           <form class="option-text" action="/experiment/<%= nextQuestion %>" method="post">
-            <input type="hidden" name="participantId" value="<%= participantId %>">
-            <input type="radio" name="answer" value="A" class="option-text"> Student A <br>
-            <input type="radio" name="answer" value="B" class="option-text"> Student B <br>
-            <input type="radio" name="answer" value="C" class="option-text"> Student C <br>
+            <div class="question">
+              <p class="question-text"><b>Q1:</b> Among all three students, who receives the lowest overall math score from these four tests?</p>
+              <input type="hidden" name="participantId" value="<%= participantId %>">
+              <input type="radio" name="answer1" value="A" class="option-text"> Student A <br>
+              <input type="radio" name="answer1" value="B" class="option-text"> Student B <br>
+              <input type="radio" name="answer1" value="C" class="option-text"> Student C <br>
+            </div>
+            <div class="question">
+              <p class="question-text"><b>Q2:</b> What is the approximate average math score for student B from these four tests?</p>
+              <input type="hidden" name="participantId" value="<%= participantId %>">
+              <input type="radio" name="answer2" value="A" class="option-text"> 45 <br>
+              <input type="radio" name="answer2" value="B" class="option-text"> 65 <br>
+              <input type="radio" name="answer2" value="C" class="option-text"> 85 <br>
+            </div>
+            <div class="question">
+              <p class="question-text"><b>Q3:</b> Assume that all three students don't study during the year, which month of exam appears to be the most difficult test among all?</p>
+              <input type="hidden" name="participantId" value="<%= participantId %>">
+              <input type="radio" name="answer3" value="A" class="option-text"> January <br>
+              <input type="radio" name="answer3" value="B" class="option-text"> April <br>
+              <input type="radio" name="answer3" value="C" class="option-text"> July <br>
+              <input type="radio" name="answer3" value="D" class="option-text"> October <br>
+            </div>
             <button type="submit" class="btn btn-primary btn-submit form-control form-control-big">Submit</button>
           </form>
         </div>

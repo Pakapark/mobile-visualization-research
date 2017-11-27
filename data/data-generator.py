@@ -27,8 +27,6 @@ def warmupGenerator():
         writeHelper(writer, date, "student B", 60, 80, 40, 4)
         writeHelper(writer, date, "student C", 80, 40, 60, 8)
 
-warmupGenerator()
-
 """
     Function: temperatureGenerator
     ==============================
