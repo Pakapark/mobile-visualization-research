@@ -44,9 +44,22 @@ def temperatureGenerator():
 
     with open("processed/temperature.csv", "w") as f:
         writer = csv.writer(f)
-        writer.writerow(["date", "city A", "city B", "city C"])
+        writer.writerow(["id", "date", "city A", "city B", "city C"])
         for i, d in enumerate(date):
-            writer.writerow([d, stanford[i], bangkok[i], tokyo[i]])
+            writer.writerow([i, d, stanford[i], bangkok[i], tokyo[i]])
+
+    with open("processed/temperature1.csv", "w") as f:
+        writer = csv.writer(f)
+        writer.writerow(["id", "date", "city", "temperature"])
+        index = 0
+        for i, d in enumerate(date):
+            writer.writerow([index, d, "city A" ,stanford[i]])
+            writer.writerow([index+1, d, "city B", bangkok[i]])
+            writer.writerow([index+2, d, "city C", tokyo[i]])
+            index += 3
+
+
+temperatureGenerator()
 
 """
     Function: incomeGenerator

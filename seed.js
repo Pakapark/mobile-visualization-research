@@ -28,6 +28,33 @@ var questions = [
     option3: "July",
     option4: "October",
     correctAnswer: "B"
+  }),
+  new Question({
+    question: 4,
+    description: "Which city has the warmest temperature throughout the year?",
+    option1: "City A",
+    option2: "City B",
+    option3: "City C",
+    option4: "Data is unclear",
+    correctAnswer: "B"
+  }),
+  new Question({
+    question: 5,
+    description: "Which city has the largest change in temperature in 2016?",
+    option1: "City A",
+    option2: "City B",
+    option3: "City C",
+    option4: "Data is unclear",
+    correctAnswer: "C"
+  }),
+  new Question({
+    question: 6,
+    description: "Which statement is correct about the temperature from June 1 to September 1 in three cities?",
+    option1: "City B is always warmer than City C",
+    option2: "City B is always cooler than City A",
+    option3: "City A is always warmer than City C",
+    option4: "City A is always cooler than City B",
+    correctAnswer: "D"
   })
 ]
 
