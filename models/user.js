@@ -6,7 +6,7 @@ var UserSchema = mongoose.Schema({
   firstName: String,
   lastName: String,
   gender: String,
-  examType: {type: String, enum: ["A", "B", "C"]},
+  questionOrder: Object,
   createdAt: Date
 })
 

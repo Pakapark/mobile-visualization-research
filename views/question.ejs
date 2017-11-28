@@ -8,7 +8,7 @@
   </head>
   <body>
     <div class="top-bar">
-      <% if (question <= 3) { %>
+      <% if (question_shown <= 2) { %>
         <p class="top-bar-text">Warm up <%= question.question %></p>
       <% } else { %>
         <p class="top-bar-text">Question <%= question.question %></h2>
@@ -17,13 +17,12 @@
 
     <div class="container">
       <div class="content">
-        <div id="visualization">
-          <img src="../images/<%= examType %>-<%= parseInt((parseInt(question.question, 10) + 2)/3, 10) %>.png" alt="" height="600" width="800">
+        <div id="visualization" style="height: 600px; width: 800px; margin: 0 auto; display: block;">
         </div>
         <div>
-          <form name="form-question" class="option-text" action="/experiment/<%= nextQuestion %>" method="post">
+          <form name="form-question" class="option-text" action="/experiment/<%= question_shown + 1 %>" method="post">
             <div class="question">
-              <p class="question-text"><b>Q<%= question.question %>:</b> <%= question.description %></p>
+              <p class="question-text"><b>Q<%= question_shown %>:</b> <%= question.description %></p>
               <input type="hidden" name="participantId" value="<%= participantId %>">
               <input type="hidden" name="firstTime" id="firstTime" value="0">
               <input type="hidden" name="lastTime" id="lastTime" value="0">
