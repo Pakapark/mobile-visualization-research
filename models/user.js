@@ -7,6 +7,7 @@ var UserSchema = mongoose.Schema({
   lastName: String,
   gender: String,
   questionOrder: Object,
+  device: String,
   createdAt: Date
 })
 
