@@ -11,18 +11,18 @@
   <body>
     <div class="top-bar">
       <% if (question_shown <= 2) { %>
-        <p class="top-bar-text">Warm up <%= question.question %></p>
+        <p class="top-bar-text">Warm up <%= question_shown %></p>
       <% } else { %>
-        <p class="top-bar-text">Question <%= question.question %></h2>
+        <p class="top-bar-text">Question <%= question_shown - 2 %></h2>
       <% } %>
     </div>
 
     <div class="container">
       <div class="content">
-        <div id="visualization" style="height: 500px; width: 100%; margin: 0 30px; display: block;"></div>
-        <!-- <div id="slider" style="margin: 30px;height: 600px; width: 800px; margin: 0 auto; display: block;">
+        <div id="visualization" style="height: 600px; width: 100%; margin: 0 30px; display: block;"></div>
+        <div id="slider" style="margin: 30px;height: 600px; width: 800px; margin: 0 auto; display: block;">
           <div id="custom-handle" class="ui-slider-handle"></div>
-        </div> -->
+        </div>
         <div>
           <form name="form-question" class="option-text" action="/experiment/<%= question_shown + 1 %>" method="post">
             <div class="question">
