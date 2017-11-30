@@ -143,3 +143,7 @@ input[type="radio"] {
     line-height: 1.6em;
     font-size: 30px;
 }
+
+.noUi-handle:focus {
+	box-shadow: 0 0 5px orange;
+}

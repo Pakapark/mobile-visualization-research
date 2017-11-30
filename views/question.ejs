@@ -6,7 +6,8 @@
     <title>CS448B Final Project</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="../stylesheets/main.css">
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> -->
+    <link rel="stylesheet" href="../stylesheets/nouislider.min.css">
   </head>
   <body>
     <div class="top-bar">
@@ -16,6 +17,8 @@
         <p class="top-bar-text">Question <%= question_shown - 2 %></h2>
       <% } %>
     </div>
+
+    <div id="slider"></div>
 
     <div class="container">
       <div class="content">
@@ -43,8 +46,40 @@
     </div>
   </body>
   <script src="https://d3js.org/d3.v4.min.js"></script>
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
+  <script src="../scripts/nouislider.min.js"></script>
+  <script type="text/javascript">
+    var slider = document.getElementById('slider');
+    noUiSlider.create(slider, {
+      start: 0,
+      step: 1,
+      range: {
+        'min': 0,
+        'max': 8
+      }
+    });
+
+    var handle = slider.querySelector('.noUi-handle');
+
+    handle.setAttribute('tabindex', 0);
+
+    handle.addEventListener('click', function(){
+    	this.focus();
+    });
+
+    handle.addEventListener('keydown', function( e ) {
+
+    	var value = Number( slider.noUiSlider.get() );
+
+    	switch ( e.which ) {
+    		case 37: slider.noUiSlider.set( value - 10 );
+    			break;
+    		case 39: slider.noUiSlider.set( value + 10 );
+    			break;
+    	}
+    });
+  </script>
   <script type="text/javascript">
   // This script manages the user's data for further analysis.
   var radios = document.getElementsByClassName("options");
@@ -66,7 +101,7 @@
   }
   </script>
 
-  <script>
+  <!-- <script>
   // Slider Bar
   $( function() {
     var handle = $( "#custom-handle" );
@@ -82,7 +117,7 @@
       }
     });
   } );
-  </script>
+  </script> -->
 
   <script type="text/javascript">
   // d3 Implementation
@@ -126,10 +161,9 @@
       scatterPlotSmallMultiple(data);
       break;
     default:
-      console.log(Shou)
+      console.log("Should not reach here");
   }
-  console.log(data);
-  console.log(visualization);
+
 
 
   </script>
