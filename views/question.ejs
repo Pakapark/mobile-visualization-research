@@ -20,10 +20,10 @@
     <div class="container">
       <div class="content">
         <div id="visualization" style="height: 600px; width: 800px; margin: 0 auto; display: block;"></div>
-        <div id="slider" style="margin: 30px;">
+        <div id="slider" style="margin: 30px; height: 600px; width: 800px; display: block;">
           <div id="custom-handle" class="ui-slider-handle"></div>
         </div>
-        <div>
+        <div style="height: 600px; width: 800px; margin: 0 auto; display: block;">
           <form name="form-question" class="option-text" action="/experiment/<%= question_shown + 1 %>" method="post">
             <div class="question">
               <p class="question-text"><b>Q<%= question_shown %>:</b> <%= question %></p>

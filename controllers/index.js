@@ -83,10 +83,6 @@ exports.getIndexRedirect = (req, res) => {
 }
 
 exports.getIndex = (req, res) => {
-  console.log("===================================");
-  var randomNumber = 8;
-  console.log("randomNumber", randomNumber);
-  console.log(dataGenerator(randomNumber));
   res.render('index');
 }
 
