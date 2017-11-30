@@ -6,7 +6,7 @@
     <title>CS448B Final Project</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="../stylesheets/main.css">
-    <!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> -->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   </head>
   <body>
     <div class="top-bar">
@@ -19,11 +19,11 @@
 
     <div class="container">
       <div class="content">
-        <div id="visualization" style="height: 600px; width: 800px; margin: 0 auto; display: block;"></div>
+        <div id="visualization" style="height: 500px; width: 100%; margin: 0 30px; display: block;"></div>
         <!-- <div id="slider" style="margin: 30px;height: 600px; width: 800px; margin: 0 auto; display: block;">
           <div id="custom-handle" class="ui-slider-handle"></div>
         </div> -->
-        <div style="width: 800px;">
+        <div>
           <form name="form-question" class="option-text" action="/experiment/<%= question_shown + 1 %>" method="post">
             <div class="question">
               <p class="question-text"><b>Q<%= question_shown %>:</b> <%= question %></p>
