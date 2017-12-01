@@ -13,7 +13,7 @@ mongoose.connect(database.url, {useMongoClient: true});
 // ================
 // ===== PORT =====
 // ================
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 5000;
 
 // ===================
 // ===== CONFIGS =====
@@ -45,6 +45,9 @@ router.route('/experiment')
 
 router.route('/experiment/:question')
   .post(indexController.postExperimentQuestion);
+
+router.route('/visualization')
+  .get(indexController.getViz);
 
 router.route('*')
   .get(indexController.getIndexRedirect);

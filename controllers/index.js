@@ -118,3 +118,7 @@ exports.postExperimentQuestion = (req, res) => {
     }).limit(1)
   }).limit(1)
 }
+
+exports.getViz = (req, res) => {
+  res.render("visualizations/warmup-bar");
+}

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="//d3js.org/d3.v3.min.js"></script>
+    <script src="scripts/d3.js"></script>
+    <style media="screen">
+      html, body, div {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- <div id="viz"></div>
+    <div>HALUMYEEEMUHYEA</div> -->
+  </body>
+  <script type="text/javascript">
+  var svg = d3.select("body").append("svg")
+              .attr("width", 960)
+              .attr("height", 500);
+  var ball = svg.append("circle")
+        .attr("r", 73)
+        .attr("cx", 480)
+        .attr("cy", 250)
+        .style("fill", "#ffe41e")
+  </script>
+</html>
