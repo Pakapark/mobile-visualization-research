@@ -16,8 +16,8 @@
 
     <!-- <div id="viz"></div>
     <div id="slider"></div> -->
-    <div class="" style="height: 50%; width: 100%; margin 0 30px; display: block;">
-      <div id="viz" style="width: 100%; display: block;"></div>
+    <div class="" style="height: 50%; width: 100%; margin 20px 30px 0 30px; display: block;">
+      <div id="viz" style="width: 100%; display: block; margin-top: 30px;"></div>
       <div style="height: 100%">
         <div id="slider" style="width: 70%; background-color: grey; margin: auto; left: 0; right: 0; height: 5%;"></div>
         <div id="sliderDescription" class="text-center" style="font-size: 30px; margin-left: 5px; margin-top: 5px; strong: true;"> &lt;- Slide Me -> </div>
@@ -121,7 +121,7 @@
           var markerOffset = offset + i*distanceBetweenMarkers + smOffsetX;
           svgCanvas.append("text")
                    .attr("y", sideDimensions - offset/2 + smOffsetY)
-                   .attr("x", markerOffset)
+                   .attr("x", markerOffset - 5)
                    .text(i.toString())
                    .attr("font-size", scaleFactor/3)
         }
@@ -129,14 +129,14 @@
         //A label
         svgCanvas.append("text")
                  .attr("y", sideDimensions - offset + smOffsetY - scaleFactor/6)
-                 .attr("x", offset+ smOffsetX + distanceBetweenMarkers*ratingCeiling)
+                 .attr("x", offset+ smOffsetX + distanceBetweenMarkers*ratingCeiling - 5)
                  .text("A")
                  .attr("font-size", scaleFactor/3)
                  .attr("fill", "red")
 
         //B label
         svgCanvas.append("text")
-                 .attr("y",(sideDimensions - offset) - (ratingCeiling*distanceBetweenMarkers) + smOffsetY + 5)
+                 .attr("y",(sideDimensions - offset) - (ratingCeiling*distanceBetweenMarkers) + smOffsetY + 15)
                  .attr("x", offset + smOffsetX + scaleFactor/6)
                  .text("B")
                  .attr("font-size", scaleFactor/3)
@@ -148,7 +148,7 @@
       for (var i = 1; i < (ratingCeiling+1); i++) {
         var markerOffset = (sideDimensions - offset) - i*distanceBetweenMarkers + smOffsetY;
         svgCanvas.append("text")
-                 .attr("y", markerOffset + 5)
+                 .attr("y", markerOffset + 15)
                  .attr("x", offset/2 + smOffsetX)
                  .text(i.toString())
                  .attr("font-size", scaleFactor/3)

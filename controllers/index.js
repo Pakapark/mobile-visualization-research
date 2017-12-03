@@ -97,7 +97,8 @@ exports.getConsent = (req, res) => {
 
 exports.postInfo = (req, res) => {
   if (!req.body.hasOwnProperty('participantId')) return res.redirect("/");
-  var newUser = new User({ participantId: req.body.participantId, createdAt: Date.now(), device: req.device.type, screenWidth: parseInt(req.body.screenWidth, 10), screenHeight: parseInt(req.body.screenHeight, 10)});
+  var newUser = new User({ participantId: req.body.participantId, createdAt: Date.now(), device: req.device.type, screenWidth: parseInt(req.body.screenWidth, 10), screenHeight: parseInt(req.body.screenHeight, 10), devicePixelRatio: parseInt(req.body.screenRatio, 10)});
+  console.log(req.device.type, req.body.screenWidth, req.body.screenHeight, req.body.screenRatio);
   newUser.save();
   res.render('info', { participantId: req.body.participantId });
 }

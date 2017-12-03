@@ -43,6 +43,7 @@
         <input type="hidden" name="participantId" value="<%= participantId %>">
         <input type="hidden" name="screenHeight" id="screenHeight" value="">
         <input type="hidden" name="screenWidth" id="screenWidth" value="">
+        <input type="hidden" name="screenRatio" id="screenRatio" value="">
         <button type="submit" name="button" class="btn btn-primary btn-center">Accept the Term</button>
       </form>
       <p class="decline-term">Decline the Term</p>
@@ -54,5 +55,8 @@
 
     var screenWidth = document.getElementById("screenWidth");
     screenWidth.value = window.screen.width;
+
+    var screenRatio = document.getElementById("screenRatio");
+    screenRatio.value = window.devicePixelRatio;
   </script>
 </html>
