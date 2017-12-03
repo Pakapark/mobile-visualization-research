@@ -11,21 +11,20 @@
   </head>
   <body>
     <div class="top-bar">
-      <% if (question_shown <= 2) { %>
-        <p class="top-bar-text">Warm up <%= question_shown %></p>
-      <% } else { %>
-        <p class="top-bar-text">Question <%= question_shown - 2 %></h2>
-      <% } %>
+        <p class="top-bar-text">Question <%= question_shown %></h2>
     </div>
 
-    <div id="slider"></div>
+    <!-- <div id="viz"></div>
+    <div id="slider"></div> -->
+    <div class="" style="height: 50%; width: 100%; margin 0 30px; display: block;">
+      <div id="viz" style="width: 100%; display: block;"></div>
+      <div id="slider" style="padding: 20px; background-color: grey;">
+        <!-- <div id="custom-handle" class="ui-slider-handle"></div> -->
+      </div>
+    </div>
 
     <div class="container">
       <div class="content">
-        <div id="visualization" style="height: 600px; width: 100%; margin: 0 30px; display: block;"></div>
-        <div id="slider" style="margin: 30px;">
-          <div id="custom-handle" class="ui-slider-handle"></div>
-        </div>
         <div>
           <form name="form-question" class="option-text" action="/experiment/<%= question_shown + 1 %>" method="post">
             <div class="question">
@@ -46,40 +45,9 @@
     </div>
   </body>
   <script src="https://d3js.org/d3.v4.min.js"></script>
-  <!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script src="../scripts/nouislider.min.js"></script>
-  <script type="text/javascript">
-    var slider = document.getElementById('slider');
-    noUiSlider.create(slider, {
-      start: 0,
-      step: 1,
-      range: {
-        'min': 0,
-        'max': 8
-      }
-    });
-
-    var handle = slider.querySelector('.noUi-handle');
-
-    handle.setAttribute('tabindex', 0);
-
-    handle.addEventListener('click', function(){
-    	this.focus();
-    });
-
-    handle.addEventListener('keydown', function( e ) {
-
-    	var value = Number( slider.noUiSlider.get() );
-
-    	switch ( e.which ) {
-    		case 37: slider.noUiSlider.set( value - 10 );
-    			break;
-    		case 39: slider.noUiSlider.set( value + 10 );
-    			break;
-    	}
-    });
-  </script>
   <script type="text/javascript">
   // This script manages the user's data for further analysis.
   var radios = document.getElementsByClassName("options");
@@ -101,50 +69,282 @@
   }
   </script>
 
-  <!-- <script>
-  // Slider Bar
-  $( function() {
-    var handle = $( "#custom-handle" );
-    $( "#slider" ).slider({
-      min: 0,
-      max: 8,
-      step: 1,
-      create: function() {
-        handle.text( $( this ).slider( "value" ) );
-      },
-      slide: function( event, ui ) {
-        handle.text( ui.value );
-      }
-    });
-  } );
-  </script> -->
-
   <script type="text/javascript">
   // d3 Implementation
   var data = <%- JSON.stringify(data) %>;
   var visualization = <%- JSON.stringify(visualization) %>;
+  const movieTitles = ["The Cooking Wizard", "The Light Horse", "Galaxy Battle", "Merriam: The King of Cat", "Curry Potter"];
+  const colorAssociation = ["blue", "orange", "green", "purple", "black"];
+  const ratingCeiling = 5;
+  const diameter = 5;
+  const offset = 30;
+  const smallMultiples = 9;
+  const smSideCount = Math.sqrt(smallMultiples);
+  var svgCanvas;
+
+   var slider = document.getElementById('slider');
+       noUiSlider.create(slider, {
+         start: 1,
+         step: 1,
+         range: {
+           'min': 1,
+           'max': smallMultiples
+         }
+   });
+
+  function addGraphObjects(sideDimensions, smOffsetX, smOffsetY, scaleFactor, xMarker) {
+    //x axis
+    svgCanvas.append("line")
+             .attr("x1", offset + smOffsetX)
+             .attr("y1", sideDimensions - offset + smOffsetY)
+             .attr("x2", sideDimensions - offset + smOffsetX)
+             .attr("y2", sideDimensions - offset + smOffsetY)
+             .attr("stroke-width", 1)
+             .attr("stroke", "grey");
+
+
+     //y axis
+     svgCanvas.append("line")
+              .attr("x1", offset + smOffsetX)
+              .attr("y1", sideDimensions - offset + smOffsetY)
+              .attr("x2", offset + smOffsetX)
+              .attr("y2", offset + smOffsetY)
+              .attr("stroke-width", 1)
+              .attr("stroke", "grey");
+
+      var distanceBetweenMarkers = (sideDimensions - offset*2)/ratingCeiling;
+
+      if (xMarker) {
+        //x markers
+        for (var i = 0; i < (ratingCeiling+1); i++) {
+          var markerOffset = offset + i*distanceBetweenMarkers + smOffsetX;
+          svgCanvas.append("text")
+                   .attr("y", sideDimensions - offset/2 + smOffsetY)
+                   .attr("x", markerOffset)
+                   .text(i.toString())
+                   .attr("font-size", scaleFactor/3)
+        }
+
+        //A label
+        svgCanvas.append("text")
+                 .attr("y", sideDimensions - offset + smOffsetY - scaleFactor/6)
+                 .attr("x", offset+ smOffsetX + distanceBetweenMarkers*ratingCeiling)
+                 .text("A")
+                 .attr("font-size", scaleFactor/3)
+                 .attr("fill", "red")
+
+        //B label
+        svgCanvas.append("text")
+                 .attr("y",(sideDimensions - offset) - (ratingCeiling*distanceBetweenMarkers) + smOffsetY + 5)
+                 .attr("x", offset + smOffsetX + scaleFactor/6)
+                 .text("B")
+                 .attr("font-size", scaleFactor/3)
+                 .attr("fill", "blue")
+      }
+
+
+      //y markers
+      for (var i = 1; i < (ratingCeiling+1); i++) {
+        var markerOffset = (sideDimensions - offset) - i*distanceBetweenMarkers + smOffsetY;
+        svgCanvas.append("text")
+                 .attr("y", markerOffset + 5)
+                 .attr("x", offset/2 + smOffsetX)
+                 .text(i.toString())
+                 .attr("font-size", scaleFactor/3)
+      }
+
+
+  }
+
+  function plotSmScatterData(sideDimensions, scaleFactor, smOffsetX, smOffsetY, timeslice) {
+    for (var k = 0; k < movieTitles.length; k++) {
+      var color = colorAssociation[k];
+      var cx = timeslice[k][0] * scaleFactor;
+      var cy = timeslice[k][1] * scaleFactor;
+
+      svgCanvas.append("circle")
+               .attr("cx", offset + cx + smOffsetX)
+               .attr("cy", sideDimensions - (offset + cy) + smOffsetY)
+               .attr("r", diameter)
+               .style("fill", color);
+    }
+  }
+
+  function plotBarPlotData(sideDimensions, scaleFactor, smOffsetX, smOffsetY, timeslice) {
+    var distanceBetweenMarkers = (sideDimensions - offset*2)/ratingCeiling;
+
+    for (var i = 1; i < (movieTitles.length +1); i++) {
+      for (var j = 0; j < 2; j++) {
+        var markerOffset = offset + i*distanceBetweenMarkers + smOffsetX + (j/2)*offset;
+        var yOrigin = (sideDimensions - offset) + smOffsetY;
+        var color = (j == 0) ? "red" : "blue";
+        svgCanvas.append("line")
+                 .classed('barLine',true)
+                 .attr("x1", markerOffset)
+                 .attr("y1", yOrigin)
+                 .attr("x2", markerOffset)
+                 .attr("y2", yOrigin - (timeslice[i-1][j]*scaleFactor))
+                 .attr("stroke-width", 5)
+                 .attr("stroke", color);
+      }
+    }
+
+  }
 
   function warmup(data){
     $("#slider").hide();
-    // TO DO: IMPLEMENT HERE
+    console.log("warmup");
+
+    $('#viz').css("height", "100%");
+    var canvasWidth = $('#viz').width();
+    var canvasHeight = $('#viz').height();
+    var smallerDimensions = ((canvasHeight > canvasWidth) ? canvasWidth : canvasHeight);
+
+    svgCanvas =  d3.select('#viz')
+                   .append("svg")
+                   .attr("width", smallerDimensions)
+                   .attr("height", smallerDimensions)
+                   .style("position", "absolute")
+                   .style("margin", "auto")
+                   .style("left", "0")
+                   .style("right", "0")
+
+    var scaleFactor = (smallerDimensions - (offset*2))/ratingCeiling;
+
+    addGraphObjects(smallerDimensions, 0, 0, scaleFactor, true);
+
+    //show data
+    for (var i = 0; i < data.length; i++) {
+      for (var j = 0; j < data[i].length; j++) {
+        var color = colorAssociation[j];
+        var cx = data[i][j][0] * scaleFactor;
+        var cy = data[i][j][1] * scaleFactor;
+
+        svgCanvas.append("circle")
+                 .attr("cx", offset + cx)
+                 .attr("cy", smallerDimensions - (offset + cy))
+                 .attr("r", diameter)
+                 .style("fill", color);
+      }
+    }
   }
 
   function barPlotSlideBar(data){
-    // TO DO: IMPLEMENT HERE
+    console.log("barPlotSlideBar");
+
+    $('#viz').css("height", "90%");
+    var canvasWidth = $('#viz').width();
+    var canvasHeight = $('#viz').height();
+    var smallerDimensions = ((canvasHeight > canvasWidth) ? canvasWidth : canvasHeight);
+
+    svgCanvas =  d3.select('#viz')
+                   .append("svg")
+                   .attr("width", smallerDimensions)
+                   .attr("height", smallerDimensions)
+                   .style("position", "absolute")
+                   .style("margin", "auto")
+                   .style("left", "0")
+                   .style("right", "0")
+
+    var scaleFactor = (smallerDimensions - (offset*2))/ratingCeiling;
+
+    addGraphObjects(smallerDimensions, 0, 0, scaleFactor, false);
+
+    slider.noUiSlider.on('update', function (values, handle) {
+      svgCanvas.selectAll('.barLine').remove();
+      // svgCanvas.selectAll('.markerText').remove();
+      var timeslice = data[Number(values[handle]) - 1];
+      plotBarPlotData(smallerDimensions, scaleFactor, 0,0, timeslice);
+    });
+
   }
 
   function barPlotSmallMultiple(data){
     $("#slider").hide();
-    // TO DO: IMPLEMENT HERE
+    console.log("barPlotSmallMultiple");
+
+    $('#viz').css("height", "100%");
+    var canvasWidth = $('#viz').width();
+    var canvasHeight = $('#viz').height();
+    var smallerDimensions = ((canvasHeight > canvasWidth) ? canvasWidth : canvasHeight);
+
+    svgCanvas =  d3.select('#viz')
+                   .append("svg")
+                   .attr("width", smallerDimensions)
+                   .attr("height", smallerDimensions)
+                   .style("position", "absolute")
+                   .style("margin", "auto")
+                   .style("left", "0")
+                   .style("right", "0")
+
+    var sideDimensions = smallerDimensions/3.0; //FIXME hardcoded
+
+    var scaleFactor = (sideDimensions - (offset*2))/ratingCeiling;
+
+    for (var i = 0; i < smSideCount; i++) {
+      for (var j = 0; j < smSideCount; j++) {
+        addGraphObjects(sideDimensions, j*sideDimensions, i*sideDimensions, scaleFactor, false);
+        plotBarPlotData(sideDimensions, scaleFactor, j*sideDimensions, i*sideDimensions, data[0]);
+        data.shift();
+      }
+    }
   }
 
   function scatterPlotSlideBar(data){
-    // TO DO: IMPLEMENT HERE
+    console.log("scatterPlotSlideBar");
+
+    $('#viz').css("height", "90%");
+    var canvasWidth = $('#viz').width();
+    var canvasHeight = $('#viz').height();
+    var smallerDimensions = ((canvasHeight > canvasWidth) ? canvasWidth : canvasHeight);
+
+    svgCanvas =  d3.select('#viz')
+                   .append("svg")
+                   .attr("width", smallerDimensions)
+                   .attr("height", smallerDimensions)
+                   .style("position", "absolute")
+                   .style("margin", "auto")
+                   .style("left", "0")
+                   .style("right", "0")
+
+    var scaleFactor = (smallerDimensions - (offset*2))/ratingCeiling;
+    addGraphObjects(smallerDimensions, 0, 0, scaleFactor, true);
+
+    slider.noUiSlider.on('update', function (values, handle) {
+      svgCanvas.selectAll('circle').remove();
+      var timeslice = data[Number(values[handle]) - 1];
+      plotSmScatterData(smallerDimensions, scaleFactor, 0,0, timeslice);
+    });
   }
 
   function scatterPlotSmallMultiple(data){
     $("#slider").hide();
-    // TO DO: IMPLEMENT HERE
+    console.log("scatterPlotSmallMultiple");
+
+    $('#viz').css("height", "100%");
+    var canvasWidth = $('#viz').width();
+    var canvasHeight = $('#viz').height();
+    var smallerDimensions = ((canvasHeight > canvasWidth) ? canvasWidth : canvasHeight);
+
+    svgCanvas =  d3.select('#viz')
+                   .append("svg")
+                   .attr("width", smallerDimensions)
+                   .attr("height", smallerDimensions)
+                   .style("position", "absolute")
+                   .style("margin", "auto")
+                   .style("left", "0")
+                   .style("right", "0")
+
+    var sideDimensions = smallerDimensions/3.0; //FIXME hardcoded
+    var scaleFactor = (sideDimensions - (offset*2))/ratingCeiling;
+    for (var i = 0; i < smSideCount; i++) {
+      for (var j = 0; j < smSideCount; j++) {
+        addGraphObjects(sideDimensions, j*sideDimensions, i*sideDimensions, scaleFactor, true);
+        plotSmScatterData(sideDimensions, scaleFactor, j*sideDimensions, i*sideDimensions, data[0]);
+        data.shift();
+      }
+    }
+
   }
 
   switch (visualization) {

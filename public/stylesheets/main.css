@@ -6,17 +6,17 @@ html, body{
 }
 
 .top-bar {
-  height: 125px;
+  height: 70px;
   background-color: black;
 }
 
 .top-bar-text {
   margin: 0;
   text-align: center;
-  padding-top: 30px;
-  padding-bottom: 30px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   color: white;
-  font-size: 48px;
+  font-size: 40px;
   font-weight: 500;
 }
 
@@ -134,7 +134,7 @@ input[type="radio"] {
   margin-bottom: 30px;
 }
 
-#custom-handle {
+/*#custom-handle {
     width: 3em;
     height: 1.6em;
     top: 50%;
@@ -142,8 +142,12 @@ input[type="radio"] {
     text-align: center;
     line-height: 1.6em;
     font-size: 30px;
+}*/
+
+.noUi-handle {
+  /*background: red;*/
 }
 
 .noUi-handle:focus {
-	box-shadow: 0 0 5px orange;
+	/*box-shadow: 0 0 5px orange;*/
 }

@@ -1,4 +1,4 @@
-const MIN_RATING = 1;
+const MIN_RATING = 0;
 const MAX_RATING = 5;
 const MOVIES = ["The Cooking Wizard", "The Light Horse", "Galaxy Battle", "Merriam: The King of Cat", "Curry Potter"];
 const NUM_TIME_FRAME = 9;

@@ -158,14 +158,14 @@ function decimal2(num){
 
 function getOptions(dataOption, data, question){
   var possibleAnswers = [
-    "Value A is generally greater than value B and both of them are increasing over time",
-    "Value A is generally less than value B and both of them are increasing over time",
-    "Value A is generally equal to value B and both of them are increasing over time",
-    "Value A is generally greater than value B and both of them are decreasing over time",
-    "Value A is generally less than value B and both of them are decreasing over time",
-    "Value A is generally equal to value B and both of them are decreasing over time",
-    "Value A is increasing over time but value B is decreasing over time",
-    "Value A is decreasing over time but value A is incresing over time"
+    "A (red) is generally greater than B (blue); both of them are increasing over time",
+    "A (red) is generally less than B (blue); both of them are increasing over time",
+    "A (red) is generally equal to B (blue); both of them are increasing over time",
+    "A (red) is generally greater than B (blue); both of them are decreasing over time",
+    "A (red) is generally less than B (blue); both of them are decreasing over time",
+    "A (red) is generally equal to B (blue); both of them are decreasing over time",
+    "A (red) is increasing over time; B (blue) is decreasing over time",
+    "A (red) is decreasing over time; A (red) is increasing over time"
   ]
   var result = {}
 
@@ -222,8 +222,8 @@ exports.postExperimentQuestion = (req, res) => {
     var question_param = parseInt(req.params.question);
     var question = users[0].questionOrder[question_param];
     var question_description = [
-      "What is the relationship between A and B?",
-      "What is the difference between the highest value from A at all time and the highest value from B at all time?"
+      "What is the relationship between A (red) and B (blue)?",
+      "What is the difference between the highest value from A (red) at all time and the highest value from B (blue) at all time?"
     ];
     var visualizationType = [
       "w", // Warm Up
@@ -245,7 +245,7 @@ exports.postExperimentQuestion = (req, res) => {
 
     res.render("question", {
       participantId: req.body.participantId,
-      question: question_description[question % 2],
+      question: question_description[1 - (question % 2)],
       visualization: visualizationType[parseInt((question-1)/2, 10)],
       options: options["options"],
       correctAnswer: options["correctAnswer"],
