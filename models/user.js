@@ -8,6 +8,8 @@ var UserSchema = mongoose.Schema({
   gender: String,
   questionOrder: Object,
   device: String,
+  screenHeight: Number,
+  screenWidth: Number,
   createdAt: Date
 })
 

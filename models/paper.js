@@ -9,7 +9,7 @@ var PaperSchema = mongoose.Schema({
     firstDecided: Number,
     lastDecided: Number,
     reluctance: Number,
-    createdAt: Date
+    createdAt: Date,
   }]
 })
 
