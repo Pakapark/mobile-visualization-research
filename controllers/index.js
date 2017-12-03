@@ -224,7 +224,7 @@ exports.postExperimentQuestion = (req, res) => {
     var question = users[0].questionOrder[question_param];
     var question_description = [
       "What is the relationship between A (red) and B (blue)?",
-      "What is the difference between the highest value from A (red) at all time and the highest value from B (blue) at all time?"
+      "Pick the highest point value across all time/plots for A (red). Pick the highest point value across all time/plots for B (blue). Compute the difference."
     ];
     var visualizationType = [
       "w", // Warm Up
