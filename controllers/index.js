@@ -239,7 +239,7 @@ exports.postExperimentQuestion = (req, res) => {
       var lastViz = visualizationType[parseInt(lastQuestion/5)];
       updatePaper(req.body, lastQuestion, lastViz);
     }
-    if (question_param > 10) return res.send("Done!");
+    if (question_param > 10) return res.render("finish");
     var randomInt = getRandomInt(1,8);
     var data = dataGenerator(randomInt);
     var options = getOptions(randomInt, data, users[0].questionOrder[question_param]);
@@ -254,6 +254,10 @@ exports.postExperimentQuestion = (req, res) => {
       data: data
     })
   }).limit(1)
+}
+
+exports.getFinish = (req, res) => {
+  res.render("finish");
 }
 
 exports.getViz = (req, res) => {

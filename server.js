@@ -49,6 +49,10 @@ router.route('/experiment/:question')
 router.route('/visualization')
   .get(indexController.getViz);
 
+router.route('/finish')
+  .get(indexController.getFinish);
+
+
 router.route('*')
   .get(indexController.getIndexRedirect);
 

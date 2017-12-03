@@ -75,6 +75,7 @@
   // d3 Implementation
   var data = <%- JSON.stringify(data) %>;
   var visualization = <%- JSON.stringify(visualization) %>;
+  var question = <%- JSON.stringify(question_shown) %>;
   const movieTitles = ["The Cooking Wizard", "The Light Horse", "Galaxy Battle", "Merriam: The King of Cat", "Curry Potter"];
   const colorAssociation = ["blue", "orange", "green", "purple", "black"];
   const ratingCeiling = 5;
@@ -353,9 +354,6 @@
   }
 
   switch (visualization) {
-    case "w":
-      warmup(data);
-      break;
     case "bs":
       barPlotSlideBar(data);
       break;
@@ -369,7 +367,11 @@
       scatterPlotSmallMultiple(data);
       break;
     default:
-      console.log("Should not reach here");
+      if (question == 1){
+        barPlotSlideBar(data);
+      } else {
+        scatterSmallMultiple(data);
+      }
   }
 
 
