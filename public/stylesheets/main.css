@@ -145,6 +145,10 @@ input[type="radio"] {
 }*/
 
 .noUi-handle {
+  background-color: green !important;
+}
+
+.noUi-handle {
   /*background: red;*/
 }
 

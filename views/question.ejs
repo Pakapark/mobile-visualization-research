@@ -16,11 +16,11 @@
 
     <!-- <div id="viz"></div>
     <div id="slider"></div> -->
-    <div class="" style="height: 50%; width: 100%; margin 20px 30px 0 30px; display: block;">
+    <div class="" style="height: 50%; width: 100%; margin 20px 30px 20px 30px; display: block;">
       <div id="viz" style="width: 100%; display: block; margin-top: 30px;"></div>
       <div style="height: 100%">
-        <div id="slider" style="width: 70%; background-color: grey; margin: auto; left: 0; right: 0; height: 5%;"></div>
-        <div id="sliderDescription" class="text-center" style="font-size: 30px; margin-left: 5px; margin-top: 5px; strong: true;"> &lt;- Slide Me -> </div>
+        <div id="sliderDescription" class="text-center" style="font-size: 30px; margin-left: 5px; margin-top: 5px; margin-bottom: 5px; font-weight: 500;"> Slide this bar to the right to advance time </div>
+        <div id="slider" style="width: 70%; background-color: grey; margin: 5px auto; left: 0; right: 0; height: 30px;"></div>
       </div>
     </div>
 
@@ -28,7 +28,7 @@
       <div class="content">
         <div>
           <form name="form-question" class="option-text" action="/experiment/<%= question_shown + 1 %>" method="post">
-            <div class="question">
+            <div class="question" style="margin-top: 30px;">
               <p class="question-text"><b>Q<%= question_shown %>:</b> <%= question %></p>
               <input type="hidden" name="participantId" value="<%= participantId %>">
               <input type="hidden" name="firstTime" id="firstTime" value="0">
@@ -161,7 +161,7 @@
 
   function plotSmScatterData(sideDimensions, scaleFactor, smOffsetX, smOffsetY, timeslice) {
     for (var k = 0; k < movieTitles.length; k++) {
-      var color = colorAssociation[k];
+      var color = "black";
       var cx = timeslice[k][0] * scaleFactor;
       var cy = timeslice[k][1] * scaleFactor;
 
