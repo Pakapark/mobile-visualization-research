@@ -83,11 +83,11 @@ exports.getIndexRedirect = (req, res) => {
 }
 
 exports.getIndex = (req, res) => {
-  if (req.device.type == 'phone') {
+  // if (req.device.type == 'phone') {
     return res.render('index', { forceType: 'phone' });
-  } else {
-    return res.render('forceMobile');
-  }
+  // } else {
+  //   return res.render('forceMobile');
+  // }
 }
 
 exports.getConsent = (req, res) => {
