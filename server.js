@@ -21,6 +21,8 @@ const port = process.env.PORT || 5000;
 var router = express.Router();
 require("./configs/appConfig")(app, express, router, passport);
 
+// require("./analyze");
+
 // ===============
 // ===== SEED ====
 // ===============
