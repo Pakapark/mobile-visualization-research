@@ -1,0 +1,13 @@
+In this project, we split our work as followed:
+(1) Pakapark Bhumiwat (Nik)
+	- Implement the framework including setting up node.js, express, mongoDB, and data generators for each visualization
+	- Analyze the data from all participants
+	- Recruit participants for the experiment
+	- 50% of paper report writeup
+
+(2) Albert Feng
+	- Implement all visualizations (Small Multiple and Slider Graph) given the data that Pakapark generates
+	- Main Recruiter for participants
+	- 50% of paper report writeup
+
+*** Total Number of hours spent for this project is approximately 45 hours for each person. 

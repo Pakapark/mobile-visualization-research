@@ -59,12 +59,12 @@ def validate(users, papers):
 def writeData(data):
     with open('data.csv', 'w') as f:
         writer = csv.writer(f)
-        firstRow = ["first name", "last name", "gender", "device", "screen width", "screen height", "pixel ratio"]
+        firstRow = ["participantId", "gender", "device", "screen width", "screen height", "pixel ratio"]
         for q in question.values():
             firstRow += [q + " result", q + " first time", q + " last time", q + " relunctance"]
         writer.writerow(firstRow)
         for userId in data:
-            row = [data[userId]["firstName"], data[userId]["lastName"], data[userId]["gender"], data[userId]["device"], data[userId]["screenWidth"], data[userId]["screenHeight"], data[userId]["screenRatio"]]
+            row = [userId, data[userId]["gender"], data[userId]["device"], data[userId]["screenWidth"], data[userId]["screenHeight"], data[userId]["screenRatio"]]
             evaluation = data[userId]["eval"]
             for q in question.values():
                 evalQ = evaluation[q]

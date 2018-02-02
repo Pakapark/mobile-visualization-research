@@ -1,0 +1,18 @@
+===== Installation =====
+In order to run this program, node v6 or greater and npm v3 or greater are required.
+You can download this program from https://nodejs.org/en/
+
+Moreover, you will need to have python 2.7 or greater to run the data analysis.
+
+To install all the relevant package, run ‘nom install’ in your terminal. This will take a few seconds to complete.
+
+===== Run Program =====
+To run the program locally, use ‘node server’ and go to port as specified in the terminal. You can also change the port at the port constant in server.js
+
+During the experiment, we will comment out the analyze.js in the server.js. However, we add it for submission due to a quick data parsing from remote database for further analysis.
+
+===== Quick Data Parsing =====
+To obtain the data from experiment, simply run ‘node server’ until you see two ‘done’ statement in your terminal. Then, run ‘python data_analysis.py’ to generate ‘data.csv’ which can open in any editor of your choice.
+
+===== License =====
+Please consult LICENSE file for more details

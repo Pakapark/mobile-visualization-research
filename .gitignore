@@ -1,0 +1,7 @@
+.DS_STORE
+./configs
+./data
+./paper.json
+./Procfile
+./user.json
+./*.txt
